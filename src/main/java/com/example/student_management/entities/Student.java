@@ -6,24 +6,25 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-@Data
-@AllArgsConstructor @NoArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Table(name = "student")
 public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(length = 50)
     private String firstNamesutuatio;
     @Column(length = 50)
     private String lastName;
     @Column(length = 50,unique = true,nullable = false)
     private String Email;
+    @Temporal(TemporalType.DATE)
     private Date birthDay;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private boolean situation;
 
-    private enum Gender {
+    public enum Gender {
         MALE,FEMALE
     }
 }
