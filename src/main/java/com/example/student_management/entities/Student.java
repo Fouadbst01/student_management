@@ -16,7 +16,7 @@ public class Student {
     private String firstNamesutuatio;
     @Column(length = 50)
     private String lastName;
-    @Column(length = 50,unique = true,nullable = false)
+    @Column(length = 50,nullable = false)
     private String Email;
     @Temporal(TemporalType.DATE)
     private Date birthDay;
