@@ -13,7 +13,7 @@ public class Student {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 50)
-    private String firstNamesutuatio;
+    private String firstName;
     @Column(length = 50)
     private String lastName;
     @Column(length = 50,nullable = false)

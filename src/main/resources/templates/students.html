@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>hello</title>
-    <script src="https://cdn.tailwindcss.com"></script
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <!--<div class="h-screen flex items-center w-full bg-gray-200">
+    <div class="h-screen flex items-center w-full bg-gray-200">
     <div class="container mx-auto border-b border-gray-200 rounded-md shadow">
-        <h1 class="text-lg w-full text-center text-gray-600 font-medium">Patient - Table</h1>
+        <h1 class="text-lg w-full text-center text-gray-600 font-medium">Student - Table</h1>
         <table class="w-full text-center">
             <thead class="bg-gray-100">
             <th class="px-6 py-2 text-xs text-gray-500">ID</th>
-            <th class="px-6 py-2 text-xs text-gray-500">Name</th>
+            <th class="px-6 py-2 text-xs text-gray-500">First Name</th>
+            <th class="px-6 py-2 text-xs text-gray-500">Last Name</th>
             <th class="px-6 py-2 text-xs text-gray-500">BirthDay</th>
-            <th class="px-6 py-2 text-xs text-gray-500">Sick</th>
-            <th class="px-6 py-2 text-xs text-gray-500">Score</th>
+            <th class="px-6 py-2 text-xs text-gray-500">Gender</th>
+            <th class="px-6 py-2 text-xs text-gray-500">Email</th>
+            <th class="px-6 py-2 text-xs text-gray-500">Situation</th>
             <th class="px-6 py-2 text-xs text-gray-500">Edit</th>
             <th class="px-6 py-2 text-xs text-gray-500">Delete</th>
             </thead>
             <tbody class="bg-white divide-y divide-gray-300">
-            <tr class="whitespace-nowrap" th:each="p:${patientList}">
-                <td class="px-6 py-4 text-sm text-gray-500" th:text="${p.id}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500 font-bold"  th:text="${p.name}" ></td>
-                <td class="px-6 py-4 text-sm text-gray-500" th:text="${p.birthDay}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500" th:text="${p.sick}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500"th:text="${p.score}"></td>
+            <tr class="whitespace-nowrap" th:each="student:${studentList}">
+                <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.id}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 font-bold"  th:text="${student.firstName}" ></td>
+                <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.lastName}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500"th:text="${student.birthDay}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.gender}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.Email}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.situation}"></td>
+
                 <td class="px-6 py-4">
                     <a class="flex justify-center" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
@@ -49,11 +54,11 @@
         </table>
         <ul class="inline-flex items-baseline">
             <li class="mx-2" th:each="page,status:${pages}">
-                <a th:href="@{index(page=${status.index})}"
+                <a th:href="@{/students/(page=${status.index})}"
                    th:class="${status.index==curentPage?'bg-gray-700 text-white':'bg-white text-gray-700'}" th:text="${status.index}"></a>
             </li>
         </ul>
     </div>
-</div>-->
+</div>
 </body>
 </html>

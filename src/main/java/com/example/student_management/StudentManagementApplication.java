@@ -28,8 +28,6 @@ public class StudentManagementApplication {
                 boolean stat=(faker.random().nextInt(2)!=0);
                 studentRepository.save(new Student(null,faker.name().firstName(),faker.name().lastName(),faker.internet().emailAddress(),faker.date().birthday(), g,stat));
             }
-
-            //studentRepository.save(new Student(null,"fouad","elbssita","email",new Date(),Student.Gender.MALE,true));
         };
     }
 
