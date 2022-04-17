@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Students</title>
+    <tit<form class="mr-2" method="post" action="@{/logout/}">
+                        <input type="submit">logout</input>
+                    </form>le>Students</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -12,7 +14,12 @@
         <div class="h-12 w-full shadow-xl flex justify-between bg-blue-500 absolute top-0 left-0 px-8">
             <p class="text-white my-auto font-bold">Student Mangement</p>
             <ul class="flex my-auto text-white">
-                <li class="mr-2">login</li>
+                <li class="mr-2" sec:authorize="!isAuthenticated()">login</li>
+                <li  sec:authorize="isAuthenticated()">
+                    <form class="mr-2" method="post" th:action="@{/logout}">
+                        <input type="submit">logout</input>
+                    </form>
+                </li>
                 <li>register</li>
             </ul>
         </div>

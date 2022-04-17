@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         super.configure(http);
         http.formLogin();
         http.authorizeHttpRequests().antMatchers("/").permitAll();
-        http.authorizeHttpRequests().antMatchers("/students").hasAnyAuthority("USER");
+        http.authorizeHttpRequests().antMatchers("/students/").hasAnyAuthority("USER");
         http.authorizeHttpRequests().antMatchers("/students/delete","/students/add","/students/add","/students/edit").hasAnyAuthority("USER");
         http.logout().logoutSuccessUrl("/");
         http.authorizeHttpRequests().anyRequest().authenticated();
