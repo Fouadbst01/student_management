@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="h-screen relative min-w-min flex items-center w-full bg-gray-100 px-4">
+        <div class="h-12 w-full shadow-xl flex justify-between bg-blue-500 absolute top-0 left-0 px-8">
+            <p class="text-white my-auto font-bold">Student Mangement</p>
+            <ul class="flex my-auto text-white">
+                <li class="mr-2">login</li>
+                <li>register</li>
+            </ul>
+        </div>
+        <section layout:fragment="content">
+
+        </section>
+    </div>
+</body>
+</html>

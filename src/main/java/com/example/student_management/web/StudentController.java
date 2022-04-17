@@ -31,16 +31,34 @@ public class StudentController {
     }
 
     @GetMapping ("/add")
-    String addStudentView(Model model){
+    String addStudentView(Model model,String keyword,String page){
         model.addAttribute("student",new Student());
-        return "addStudent";
+        model.addAttribute("edit",false);
+        model.addAttribute("keyword",keyword);
+        model.addAttribute("curentPage",page);
+        return "studentForm";
     }
-    @PostMapping
-    String addStudent(@Valid Student student, Errors errors){
+    @PostMapping("/save")
+    String addStudent(@Valid Student student, Errors errors,String keyword,String page){
         if(errors.hasErrors()){
-            return "addStudent";
-        }
+            return "studentForm";
+        };
         studentRepository.save(student);
-        return "redirect:/students";
+        return "redirect:/students?page="+page+"&keyword="+keyword;
+    }
+    @GetMapping("/delete")
+    String deleteStudent(Long id,String keyword,String page){
+        studentRepository.deleteById(id);
+        return "redirect:/students?page="+page+"&keyword="+keyword;
+    }
+
+    @GetMapping("/edit")
+    String deleteStudent(Model model,Long id,String keyword,String page){
+        Student student = studentRepository.getById(id);
+        model.addAttribute("student",student);
+        model.addAttribute("edit",true);
+        model.addAttribute("keyword",keyword);
+        model.addAttribute("curentPage",page);
+        return "studentForm";
     }
 }
