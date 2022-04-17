@@ -7,6 +7,7 @@ import com.example.student_management.entities.Gender;
 import com.example.student_management.entities.Student;
 import com.example.student_management.repositories.StudentRepository;
 import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,7 +31,7 @@ public class StudentManagementApplication {
         return new BCryptPasswordEncoder();
     }
 
-   // @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(StudentRepository studentRepository){
         return args ->{
             Faker faker = new Faker(Locale.FRENCH);
@@ -38,12 +39,21 @@ public class StudentManagementApplication {
                 Gender g;
                 g=Gender.values()[faker.random().nextInt(2)];
                 boolean stat=(faker.random().nextInt(2)!=0);
-                studentRepository.save(new Student(null,faker.name().firstName(),faker.name().lastName(),faker.internet().emailAddress(),faker.date().birthday(), g,stat));
+                Name name = faker.name();
+                String firstName=name.firstName();
+                String lastName=name.lastName();
+                studentRepository.save(new Student(null,
+                        firstName.length()>6?firstName:firstName+faker.lorem().characters(5),
+                        lastName.length()>6?lastName:lastName+faker.lorem().characters(5),
+                        faker.internet().emailAddress(),
+                        faker.date().birthday(),
+                        g,
+                        stat));
             }
         };
     }
     //@Bean
-    CommandLineRunner commandLineRunner(SecurityService securityService){
+    CommandLineRunner commandLineRunner2(SecurityService securityService){
         return args -> {
             securityService.saveUser("fouad","1234","1234");
             securityService.saveUser("admin","1234","1234");
@@ -52,6 +62,7 @@ public class StudentManagementApplication {
             securityService.saveRole("USER","des");
 
             securityService.addRoleToUser("fouad","USER");
+            securityService.addRoleToUser("admin","USER");
             securityService.addRoleToUser("admin","ADMIN");
 
         };
