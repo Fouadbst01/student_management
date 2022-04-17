@@ -16,6 +16,7 @@
                       First name
                   </label>
                   <input class="h-12 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="First name" type="text" name="firstName">
+                  <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
               </div>
               <div class="mb-6">
                   <label class="block text-gray-700 text-sm font-bold mb-2" for="username">

@@ -11,8 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.logging.LogRecord;
 
@@ -41,7 +43,10 @@ public class StudentController {
         return "addStudent";
     }
     @PostMapping
-    String addStudent(Student student){
+    String addStudent(@Valid Student student, Errors errors){
+        if(errors.hasErrors()){
+            return "addStudent";
+        }
         studentRepository.save(student);
         return "redirect:/students";
     }
