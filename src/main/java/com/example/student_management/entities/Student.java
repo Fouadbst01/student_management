@@ -3,6 +3,7 @@ package com.example.student_management.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,12 +20,9 @@ public class Student {
     @Column(length = 50,nullable = false)
     private String Email;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDay;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private boolean situation;
-
-    public enum Gender {
-        MALE,FEMALE
-    }
 }
