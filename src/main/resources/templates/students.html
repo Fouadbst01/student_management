@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 layout:decorate="home">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +12,8 @@ layout:decorate="home">
         <div class="min-w-4xl mx-auto shadow-2xl rounded-md border-b-2 bg-gray-200 border-gray-300 px-4 pb-3">
             <h1  class="my-2 pt-2 text-xl font-bold w-full text-center text-blue-500">Students - Table</h1>
             <div class="flex mb-2 justify-between">
-                <form method="get" th:action="@{/students/add/(page=${curentPage},keyword=${keyword})}">
-                    <input class="px-4 py-1 text-white rounded font-bold bg-blue-500" type="submit" value="Add">
+                <form  method="get" th:action="@{/students/add/(page=${curentPage},keyword=${keyword})}">
+                    <input sec:authorize="hasAnyAuthority('ADMIN')" class="px-4 py-1 text-white rounded font-bold bg-blue-500" type="submit" value="Add">
                 </form>
                 <form method="get" class ="">
                     <input class="rounded h-8 px-2" type="text" name="keyword" th:value="${keyword}" placeholder="keyword"/>
@@ -28,8 +29,8 @@ layout:decorate="home">
                 <th class="px-6 py-2 text-xs text-gray-500">Gender</th>
                 <th class="px-6 py-2 text-xs text-gray-500">Email</th>
                 <th class="px-6 py-2 text-xs text-gray-500">Situation</th>
-                <th class="px-6 py-2 text-xs text-gray-500">Edit</th>
-                <th class="px-6 py-2 text-xs text-gray-500">Delete</th>
+                <th sec:authorize="hasAnyAuthority('ADMIN')" class="px-6 py-2 text-xs text-gray-500">Edit</th>
+                <th sec:authorize="hasAnyAuthority('ADMIN')" class="px-6 py-2 text-xs text-gray-500">Delete</th>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-300">
                 <tr class="whitespace-nowrap" th:each="student:${studentList}">
@@ -41,7 +42,7 @@ layout:decorate="home">
                     <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.Email}"></td>
                     <td class="px-6 py-4 text-sm text-gray-500" th:text="${student.situation}"></td>
 
-                    <td class="px-6 py-4">
+                    <td sec:authorize="hasAnyAuthority('ADMIN')" class="px-6 py-4">
                         <a class="flex justify-center" th:href="@{/students/edit/(id=${student.id},keyword=${keyword},page=${curentPage})}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -50,7 +51,7 @@ layout:decorate="home">
                             </svg>
                         </a>
                     </td>
-                    <td class="px-6 py-4">
+                    <td sec:authorize="hasAnyAuthority('ADMIN')" class="px-6 py-4">
                         <a onclick="return confirm('Are u Sure !')" class="flex justify-center" th:href="@{/students/delete/(id=${student.id},keyword=${keyword},page=${curentPage})}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
