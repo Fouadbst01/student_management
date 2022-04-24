@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().defaultSuccessUrl("/students/",true);
 
-        http.authorizeRequests().mvcMatchers(HttpMethod.GET,"/").permitAll();
+        http.authorizeRequests().mvcMatchers(HttpMethod.GET,"/","/register").permitAll();
         //http.authorizeRequests().antMatchers("/webjars/**","/content/**").permitAll();
         http.authorizeRequests().mvcMatchers(HttpMethod.GET,"/students").hasAuthority("USER");
         http.authorizeRequests().mvcMatchers(HttpMethod.GET,"/students/add","/students/edit","/students/delete").hasAuthority("ADMIN");
