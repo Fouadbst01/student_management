@@ -4,10 +4,10 @@ FROM openjdk:8
 LABEL maintainer="fouadelbssita@gmail.com"
 
 #ajouter un volume point a /tmp
-VOLUME /tmp
+#VOLUME /tmp
 
 #exposer le port 8080 au exterieur
-EXPOSE 8008
+#EXPOSE 8008
 
 
 #path du jar file qui sera executer dans notre container
