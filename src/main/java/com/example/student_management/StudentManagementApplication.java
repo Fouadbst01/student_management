@@ -31,7 +31,7 @@ public class StudentManagementApplication {
         return new BCryptPasswordEncoder();
     }
 
-    //@Bean
+    @Bean
     CommandLineRunner commandLineRunner(StudentRepository studentRepository){
         return args ->{
             Faker faker = new Faker(Locale.FRENCH);
@@ -52,7 +52,7 @@ public class StudentManagementApplication {
             }
         };
     }
-    //@Bean
+    @Bean
     CommandLineRunner commandLineRunner2(SecurityService securityService){
         return args -> {
             securityService.saveUser("fouad","1234","1234");

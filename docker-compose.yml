@@ -29,8 +29,10 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/STD_DB?useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/STD_DB?useSSL=false&useTimezone=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: fouad
       SPRING_DATASOURCE_PASSWORD: DeApTdfgf
-      SPRING_DATASOURCE_PLATFORM: org.hibernate.dialect.MariaDBDialect
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.jdbc.Driver
+      #SPRING_DATASOURCE_PLATFORM: org.hibernate.dialect.MariaDBDialect
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MariaDBDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
